@@ -22,7 +22,7 @@ def create_a(ii_graph):
         for child, label, probability in ii_graph[parent]:
             row = keys.index(parent)
             col = keys.index(child)
-            a[row][col] = 1/sum(len(v) for v in ii_graph.values())
+            a[row][col] = 1/{k: sum(1 for x in v if x) for k, v in ii_graph.items()}[parent]
     return a
 
 # Method to create the emission probability matrix for viterbi
