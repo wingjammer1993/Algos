@@ -1,6 +1,8 @@
 import numpy
 
 
+# Method to find the path of the required sequence in the graph
+
 def find_path(i_graph, start_ver, req_seq):
     a = create_a(i_graph)
     b = create_b(i_graph, start_ver, req_seq)
@@ -11,6 +13,7 @@ def find_path(i_graph, start_ver, req_seq):
     answer_path = viterbi_decode(req_seq, keys, a, b, pie_1)
     return answer_path
 
+# Method to create the transition probability matrix for viterbi algorithm
 
 def create_a(ii_graph):
     keys = list(ii_graph.keys())
@@ -22,6 +25,7 @@ def create_a(ii_graph):
             a[row][col] = 1/sum(len(v) for v in ii_graph.values())
     return a
 
+# Method to create the emission probability matrix for viterbi
 
 def create_b(ii_graph, start_ver, req_seq):
     keys = list(ii_graph.keys())
@@ -36,6 +40,8 @@ def create_b(ii_graph, start_ver, req_seq):
                 b[row][col] = probability
     return b
 
+# Viterbi decoding algorithm
+
 
 def viterbi_decode(observation_sequence, state_sequence, a, b, pie_1):
 
@@ -46,7 +52,7 @@ def viterbi_decode(observation_sequence, state_sequence, a, b, pie_1):
     backtrace = numpy.zeros((rows, columns))
     best_path = numpy.zeros(columns)
 
-    # Initialization - we fill the first column with <s> to tag probabilities.
+    # Initialization - we fill the first column with first column of viterbi trellis
 
     for s, state in enumerate(state_sequence):
             viterbi[s][0] = pie_1[s]*b[s][0]
@@ -68,7 +74,7 @@ def viterbi_decode(observation_sequence, state_sequence, a, b, pie_1):
                 viterbi[s][t] = numpy.amax(func)
                 backtrace[s][t] = numpy.argmax(func_max)
 
-    # Termination - we will fill the remaining columns in the state chart
+    # Termination - we will fill the end column of the trellis
 
     end_col = len(observation_sequence) - 1
     func_max = []
@@ -80,7 +86,7 @@ def viterbi_decode(observation_sequence, state_sequence, a, b, pie_1):
     best_score = numpy.amax(func_max)
     start_backtrace = numpy.argmax(func_max)
 
-    # Backtracking
+    # Backtracking to find the most probable path
 
     best_path[end_col] = start_backtrace
     for col in range(end_col-1, -1, -1):
@@ -91,6 +97,8 @@ def viterbi_decode(observation_sequence, state_sequence, a, b, pie_1):
     for index in range(0, len(observation_sequence), 1):
         tag = best_path[int(index)]
         answer_string.append(state_sequence[int(tag)])
+
+    # Check for validity of result
 
     summation = numpy.sum(viterbi, axis=0)
     if 0 in summation:
