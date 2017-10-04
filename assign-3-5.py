@@ -13,9 +13,8 @@ class SearchGraph:
         self.list_label = list_label
         self.current_index = 0
 
-    # This method will call the internal search_sequence method and return path
-    # If path is present, it returns the same
-    # Else it returns 'NO'
+    # This method will call the internal search_sequence method and return most probable path
+    # If no such path is present,it returns 'NO'
 
     def return_path(self):
         length = len(self.list_label)
@@ -25,8 +24,8 @@ class SearchGraph:
         else:
             return 'NO'
 
-    # This method returns the first path which matches the input observation sequence.
-    # Else it returns a partial matching path
+    # This method finds all possible paths and computes there probability
+    # It only stores the path giving maximum probability
 
     def search_sequence(self, input_graph, start_vertex, list_label, current_index):
 
@@ -46,7 +45,6 @@ class SearchGraph:
                 self.path_ways[current_index] = start_vertex
                 self.probability_ways[current_index] = probability
                 self.search_sequence(input_graph, child, new_list, current_index+1)
-                print(current_index)
 
 
 if __name__ == "__main__":
