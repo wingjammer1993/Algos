@@ -15,7 +15,6 @@ def solve_lp(ver, w_edge, src, tgt):
     my_lp += sum(x for x in variables)
 
     # Create constraints
-
     my_lp += variables[ver.index(src)] == 0
     for elem in w_edge:
         i = ver.index(elem[1])
@@ -36,6 +35,8 @@ def solve_lp(ver, w_edge, src, tgt):
         print("Optimal solution exists and is equal to: {} and the optimal point is:".format(value(my_lp.objective)))
         for variable in my_lp.variables():
             print("{} = {}".format(variable.name, variable.varValue))
+
+    print("shortest path for : {} = {}".format(variables[ver.index(tgt)].name, variables[ver.index(tgt)].varValue))
 
 
 if __name__ == "__main__":
