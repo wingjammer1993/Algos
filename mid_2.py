@@ -28,3 +28,4 @@ if __name__ == "__main__":
     question = ['p', 'p', 'p', 'p', 'p', 'd', 'd', 'd', 'd', 'p']
     win = find_majority(question)
     print(win)
+
