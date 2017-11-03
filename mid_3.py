@@ -25,7 +25,7 @@ def charge(n):
 
 
 if __name__ == "__main__":
-    arr = [130, 50, 150, 200]
+    arr = [130, 70, 150, 30]
     winner = penalty(arr, 0, len(arr)-1)
     print(winner)
 
