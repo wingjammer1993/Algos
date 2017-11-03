@@ -43,7 +43,6 @@ class SolPenalty:
     def reconstruct_solution(self, path):
         tour_path = []
         k = 0
-        j = 0
         i = 0
         while k < len(path):
             j = numpy.argmin(path[k])
