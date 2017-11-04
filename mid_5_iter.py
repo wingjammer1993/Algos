@@ -2,19 +2,24 @@ import numpy
 
 
 def max_probability(a, p, q):
-    p_matrix = numpy.empty((len(a), len(a)))
-    p_matrix[:] = numpy.float('-inf')
+    p_matrix = [float('-inf')]*len(a)
 
     for i in range(q, p-1, -1):
         for j in range(i, q+1):
             if j == q:
-                p_matrix[i][j] = charge(a[i:j+1])
+                temp = charge(a[i:j+1])
+                if temp > p_matrix[i]:
+                    p_matrix[i] = temp
+
             elif i <= j:
                 num = charge(a[i:j+1])
-                num_max = numpy.max(p_matrix[j+1])
-                p_matrix[i][j] = num*num_max
+                num_max = p_matrix[j+1]
+                temp = num*num_max
+                if temp > p_matrix[i]:
+                    p_matrix[i] = temp
 
-    return numpy.max(p_matrix[0])
+    print(p_matrix)
+    return p_matrix[0]
 
 
 def charge(string):
@@ -35,3 +40,4 @@ if __name__ == "__main__":
     arr = 'pand'
     prob = max_probability(arr, 0, len(arr)-1)
     print(prob)
+
