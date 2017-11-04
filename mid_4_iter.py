@@ -34,6 +34,6 @@ def charge(n):
 
 
 if __name__ == "__main__":
-    arr = [130, 50, 150, 50, 120]
+    arr = [130, 50, 150, 50, 80, 200, 120, 40, 40]
     prob = min_penalty(arr, 0, len(arr)-1)
     print(prob)
