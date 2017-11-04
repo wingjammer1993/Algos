@@ -51,13 +51,13 @@ def charge(string):
     d = {'p': 0.9, 'pa': 0.8, 'pan': 0.2, 'pand': 0.01, 'a': 0.5, 'an': 0.9, 'and': 0.7, 'n': 0.2,
                            'nd': 0.6, 'd': 0.9}
     val = 1
-    strn = string
+    str_n = string
     if isinstance(string, list):
-        strn = ''
+        str_n = ''
         for elem in string:
-            strn = str(strn) + str(elem)
-    if strn in d:
-        val = d[strn]
+            str_n = str(str_n) + str(elem)
+    if str_n in d:
+        val = d[str_n]
     return val
 
 
