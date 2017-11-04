@@ -48,8 +48,8 @@ class SolPenalty:
 
 
 def charge(string):
-    d = {'p': 0.1, 'pa': 0.8, 'pan': 0.2, 'pand': 0.01, 'a': 0.5, 'an': 0.5, 'and': 0.7, 'n': 0.2,
-                           'nd': 0.6, 'd': 0.1}
+    d = {'p': 0.9, 'pa': 0.8, 'pan': 0.2, 'pand': 0.01, 'a': 0.5, 'an': 0.9, 'and': 0.7, 'n': 0.2,
+                           'nd': 0.6, 'd': 0.9}
     val = 1
     strn = string
     if isinstance(string, list):
