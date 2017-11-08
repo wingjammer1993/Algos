@@ -12,7 +12,7 @@ x4 = LpVariable('x4', None, None, cat='Continuous', e=None)
 my_lp += 22*x1 + 30*x2, "Optimization Function"
 
 # Constraints
-my_lp += x1*0.5 + 0.5*x2 <= 120, "constraint 1 "
+my_lp += x1*0.5 + 0.25*x2 <= 120, "constraint 1 "
 my_lp += x1*0.5 + 0.75*x2 <= 160, "constraint 2 "
 my_lp += x1 >= 0, "constraint 7 "
 my_lp += x2 >= 0, "constraint 8 "
